@@ -1,0 +1,41 @@
+/* Operations console layout on the shared "ops" theme. */
+html { background: var(--paper); }
+.console { min-height: 100vh; display: flex; flex-direction: column; }
+.topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 12px 24px; border-bottom: 1px solid var(--line); background: var(--paper-deep);
+  position: sticky; top: 0; z-index: 1;
+}
+.logo { font-family: var(--font-display); font-weight: 600; letter-spacing: 0.18em; font-size: 15px; }
+.logo span { color: var(--signal); }
+.who { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--ink-soft); }
+.who button { min-height: 34px; padding: 6px 14px; }
+main { flex: 1; padding: 24px; width: 100%; max-width: 1280px; margin: 0 auto; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+
+.signin { display: grid; place-items: center; min-height: 70vh; }
+.signin-card { width: min(420px, 100%); display: grid; gap: 16px; padding: 28px; }
+.signin-title { font-family: var(--font-display); font-weight: 600; font-size: 28px; margin: 0; letter-spacing: -0.01em; }
+.signin-card .eyebrow { margin: 0; color: var(--signal); }
+.signin-card code { margin: 0 4px; }
+
+.users { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 20px; align-items: start; }
+.section-head { display: flex; justify-content: space-between; align-items: baseline; }
+.table-wrap { overflow-x: auto; margin: 0 -20px -20px; }
+td .tag { margin-right: 4px; }
+.create { display: grid; gap: 14px; position: sticky; top: 76px; }
+.create .grid { display: grid; gap: 12px; }
+.create h2 { margin: 0; }
+.create button { justify-self: start; }
+button { border-radius: var(--radius-s); }
+
+.dev { padding: 16px 24px; border-top: 1px solid var(--line); }
+.dev summary { cursor: pointer; color: var(--muted); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+.dev details[open] summary { margin-bottom: 12px; }
+
+@media (max-width: 960px) {
+  .users { grid-template-columns: 1fr; }
+  .create { position: static; }
+  main { padding: 16px; }
+}
