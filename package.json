@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
-    "@booking/shared": "github:RaminduSamarawickrama/booking-shared#465e8d8aae4c4aa6e534d3f5849a959e89a91a64",
+    "@booking/shared": "github:RaminduSamarawickrama/booking-shared#75ec03ff462326200ea13f8fac12a6b18cb5da32",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   },
