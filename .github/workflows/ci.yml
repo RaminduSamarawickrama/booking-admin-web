@@ -1,10 +1,10 @@
 # Free CI on GitHub-hosted runners. No deploy secrets: Vercel deploys through its GitHub integration.
 name: CI
 
+# Every push runs CI, so feature branches are checked before a pull request is opened.
 on:
-  pull_request:
   push:
-    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -19,14 +19,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: No Stripe keys or webhook secrets in the repository
         run: |
           if git grep -nE '(sk|rk)_(test|live)_[A-Za-z0-9]{30,}|whsec_[A-Za-z0-9]{30,}' -- . ; then
             echo "Remove the Stripe key above and roll it in the Stripe Dashboard" >&2
             exit 1
           fi
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
