@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Blocks commits that contain Stripe secret or restricted keys, or webhook signing secrets.
+# Enable once per clone:  git config core.hooksPath .githooks
+set -euo pipefail
+
+pattern='(sk|rk)_(test|live)_[A-Za-z0-9]{30,}|whsec_[A-Za-z0-9]{30,}'
+if git diff --cached -U0 --no-color | grep -E '^\+' | grep -qE "$pattern"; then
+  echo "Commit blocked: it contains what looks like a Stripe API key or webhook secret." >&2
+  echo "Put keys in your git-ignored .env or a secrets store, never in source files." >&2
+  exit 1
+fi
